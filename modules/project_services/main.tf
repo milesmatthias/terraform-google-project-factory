@@ -18,7 +18,7 @@
   APIs configuration
  *****************************************/
 resource "google_project_service" "project_services" {
-  for_each                   = toset([for api in var.activate_apis : api if var.enable_apis])
+  for_each                   = toset([for api in var.activate_apis : api if var.enable_apis == "true"])
   project                    = var.project_id
   service                    = each.value
   disable_on_destroy         = var.disable_services_on_destroy
